@@ -34,7 +34,7 @@ services:
       DB_HOST: $DB_HOST
       DB_USER: $DB_USER
       DB_PASSWORD: $DB_PASSWORD
-      DB_NAME: $DB_NAMEd
+      DB_NAME: $DB_NAME
       PHP_FPM_USER: root
       PHP_FPM_GROUP: root
     user: root
@@ -130,8 +130,8 @@ services:
 #    container_name: "${PROJECT_NAME}_adminer"
 #    image: wodby/adminer:$ADMINER_TAG
 #    environment:
-# #      # For PostgreSQL:
-# #      ADMINER_DEFAULT_DB_DRIVER: pgsql
+##      # For PostgreSQL:
+##      ADMINER_DEFAULT_DB_DRIVER: pgsql
 #      ADMINER_DEFAULT_DB_HOST: $DB_HOST
 #      ADMINER_DEFAULT_DB_NAME: $DB_NAME
 #    labels:
