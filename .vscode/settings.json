@@ -1,0 +1,17 @@
+{
+	"sqltools.connections": [
+		{
+			"mysqlOptions": {
+				"authProtocol": "default"
+			},
+			"previewLimit": 50,
+			"server": "mariadb",
+			"port": 3306,
+			"driver": "MariaDB",
+			"name": "Laravel",
+			"database": "php",
+			"username": "php",
+			"password": "php"
+		}
+	]
+}
