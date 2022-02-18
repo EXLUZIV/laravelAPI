@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\IndexController;
+use App\Http\Controllers\Api\V1\PostController;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/posts', [IndexController::class, 'allPost'])->name('home');
+// Route::get('/posts', [IndexController::class, 'allPost'])->name('home');
 
-Route::get('/posts{id}', [IndexController::class, 'postById{id}'])->name('home');
+// Route::get('/posts{id}', [IndexController::class, 'postById{id}'])->name('home');
+
+
+Route::apiResource('posts', PostController::class);
