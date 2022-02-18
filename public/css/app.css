@@ -1,0 +1,44 @@
+.box{
+	border: black 1px solid;
+	border-radius: 2px;
+	float: left;
+	width: 15%;
+	padding: 10px;
+	text-align: center;
+	margin: 10px;
+}
+.box a{
+	text-decoration: none;
+	margin: 10px;
+}
+.add-box{
+	width: 200px;
+	float: left;
+	padding: 10px;
+	border: black 1px solid;
+	border-radius: 2px;
+	margin: 10px;
+	width: 15%;
+}
+.add-box input{
+	margin: 10px;
+}
+.add-box button{
+	margin: 10px;
+}
+.change-box{
+	width: 200px;
+	float: left;
+	padding: 10px;
+	border: black 1px solid;
+	border-radius: 2px;
+	margin: 10px;
+	width: 15%;
+}
+.change-box input{
+	margin: 10px;
+}
+.change-box button{
+	margin: 10px;
+}
+
