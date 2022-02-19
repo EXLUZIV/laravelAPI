@@ -52,7 +52,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post = Post::findOrFail($post);
+        return $post;
     }
 
     /**
