@@ -26,4 +26,4 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/posts{id}', [IndexController::class, 'postById{id}'])->name('home');
 
 
-Route::apiResource('posts', PostController::class);
+Route::apiResource('/posts', 'PostController');

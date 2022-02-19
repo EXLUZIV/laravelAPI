@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostStoreRequest extends FormRequest
@@ -23,10 +24,29 @@ class PostStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'worker_id' => 'requred|max:255',
+        $rules =  [
+            'worker_id' => 'required|integer|max:255',
             'post_title' => 'required|max:255',
             'post_content' => 'required|max:255',
         ];
+
+        switch ($this->getMethod())
+        {
+            case 'POST' :
+                return $rules;
+            case 'PUT' :
+                return [
+                    'id' => 'required|integer|exits:post,id',
+                    'title' => [
+                        'required',
+                        Rule::unique('post')->ignore($this->post_title, 'post_title')
+                    ]
+                ] + $rules;
+
+            case 'DELETE' :
+                return [
+                    'id' => 'required|integer|exists:worker,id'
+                ];
+        }
     }
 }

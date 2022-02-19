@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(Post::all());
+        return Post::all();
     }
 
     /**
@@ -30,7 +30,7 @@ class PostController extends Controller
     {
         $createdPost = Post::created($request->validated());
 
-        return new PostResource($createdPost);
+        return new $createdPost;
     }
 
     /**
@@ -41,7 +41,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return new PostResource($post);
+        return $post = Post::findOrFail($post);
     }
 
     /**
@@ -51,11 +51,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostStoreRequest $request, Post $post)
+    public function update(PostStoreRequest $request, $id)
     {
-        $post->update($request->validated());
-    
-        return new PostResource($post);
+        $post = Post::findOrFail($id);
+        $post->fill($request->except(['id']));
+        $post->save();
+        return response()->json($post);
     }
 
     /**
@@ -64,10 +65,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, $id)
     {
-        $post->delete();
+        $post->Post::findOrFail($id);
+        if ($post->delete()) return response(null,204);
 
-        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
