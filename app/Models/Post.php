@@ -14,4 +14,9 @@ class Post extends Model
     protected $fillable = ['worker_id', 'post_title', 'post_content'];
 
     protected $hidden = ['created_at', 'updated_at'];
+
+    public function worker()
+    {
+        return $this->hasOne(Worker::class);
+    }
 }
