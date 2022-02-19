@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Response;
+use Symfony\Component\Console\Input\Input;
 
 class PostController extends Controller
 {
@@ -26,11 +28,20 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostStoreRequest $request)
+    public function store()
     {
-        $createdPost = Post::created($request->validated());
+        request()->validate([
+            'worker_id' => 'required',
+            'post_title' => 'required',
+            'post_content' => 'required',
+        ]);
 
-        return new $createdPost;
+
+        return  Post::create([
+            'worker_id' => request('worker_id'),
+            'post_title' => request('post_title'),
+            'post_content' => request('post_content')
+        ]);
     }
 
     /**
@@ -51,12 +62,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostStoreRequest $request, $id)
+    public function update(Post $post)
     {
-        $post = Post::findOrFail($id);
-        $post->fill($request->except(['id']));
-        $post->save();
-        return response()->json($post);
+        request()->validate([
+            'worker_id' => 'required',
+            'post_title' => 'required',
+            'post_content' => 'required',
+        ]);
+
+        $success = $post->update([
+            'worker_id' => request('worker_id'),
+            'post_title' => request('post_title'),
+            'post_content' => request('post_content'),
+        ]);
+
+        return [
+            'success' => $success
+        ];
+
     }
 
     /**
@@ -65,10 +88,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post, $id)
+    public function destroy(Post $post)
     {
-        $post->Post::findOrFail($id);
-        if ($post->delete()) return response(null,204);
+
+        $success = $post->delete();
+
+        return [
+            'success' => $success
+        ];
 
     }
 }
