@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class PostStoreRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,12 @@ class PostStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'worker_id' => 'required',
-            'post_title' => 'required',
-            'post_content' => 'required',
+            'worker_id' => 'required|max:255',
+            'post_title' => 'required|max:255',
+            'post_content' => 'required|max:255',
         ];
     }
 }

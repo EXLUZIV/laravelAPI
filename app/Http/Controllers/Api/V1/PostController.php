@@ -28,7 +28,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(PostRequest $request)
     {
         request()->validate([
             'worker_id' => 'required',
@@ -42,6 +42,14 @@ class PostController extends Controller
             'post_title' => request('post_title'),
             'post_content' => request('post_content')
         ]);
+
+        // $post = new Post;
+        // $post->worker_id=$request->worker_id;
+        // $post->post_title=$request->post_title;
+        // $post->post_content=$request->post_content;
+        // $result = $post->save();
+
+        // return $result;
     }
 
     /**
