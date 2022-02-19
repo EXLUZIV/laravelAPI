@@ -36,11 +36,7 @@ class PostStoreRequest extends FormRequest
                 return $rules;
             case 'PUT' :
                 return [
-                    'id' => 'required|integer|exits:post,id',
-                    'title' => [
-                        'required',
-                        Rule::unique('post')->ignore($this->post_title, 'post_title')
-                    ]
+                    'id' => 'required|integer|exits:post,id'
                 ] + $rules;
 
             case 'DELETE' :
