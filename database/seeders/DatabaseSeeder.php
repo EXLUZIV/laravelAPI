@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             WorkerSeeder::class,
             PostSeeder::class,
-            ComentSeeder::class
+            CommentSeeder::class
         ]);
     }
 }

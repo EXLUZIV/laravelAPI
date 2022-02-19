@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Coment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class ComentFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,7 @@ class ComentFactory extends Factory
         return [
             'worker_id' => $this->faker->numberBetween(1,10),
             'post_id' => $this->faker->numberBetween(1,10),
-            'coment_title' => $this->faker->text
+            'comment_title' => $this->faker->text
         ];
     }
 }
