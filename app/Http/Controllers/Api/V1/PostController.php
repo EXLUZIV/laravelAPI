@@ -28,28 +28,31 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $req)
     {
-        request()->validate([
-            'worker_id' => 'required',
-            'post_title' => 'required',
-            'post_content' => 'required',
-        ]);
+        // request()->validate([
+        //     'worker_id' => 'required',
+        //     'post_title' => 'required',
+        //     'post_content' => 'required',
+        // ]);
 
 
-        return  Post::create([
-            'worker_id' => request('worker_id'),
-            'post_title' => request('post_title'),
-            'post_content' => request('post_content')
-        ]);
+        // return  Post::create([
+        //     'worker_id' => request('worker_id'),
+        //     'post_title' => request('post_title'),
+        //     'post_content' => request('post_content')
+        // ]);
 
-        // $post = new Post;
-        // $post->worker_id=$request->worker_id;
-        // $post->post_title=$request->post_title;
-        // $post->post_content=$request->post_content;
-        // $result = $post->save();
+        $post = new Post;
+        $post->worker_id=$req->worker_id;
+        $post->post_title=$req->post_title;
+        $post->post_content=$req->post_content;
+        $success = $post->save();
 
-        // return $result;
+        return [
+            'success' => $success
+        ];
+
     }
 
     /**
@@ -70,19 +73,25 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Post $post)
+    public function update(PostRequest $req, $id)
     {
-        request()->validate([
-            'worker_id' => 'required',
-            'post_title' => 'required',
-            'post_content' => 'required',
-        ]);
+        // request()->validate([
+        //     'worker_id' => 'required',
+        //     'post_title' => 'required',
+        //     'post_content' => 'required',
+        // ]);
 
-        $success = $post->update([
-            'worker_id' => request('worker_id'),
-            'post_title' => request('post_title'),
-            'post_content' => request('post_content'),
-        ]);
+        // $success = $post->update([
+        //     'worker_id' => request('worker_id'),
+        //     'post_title' => request('post_title'),
+        //     'post_content' => request('post_content'),
+        // ]);
+
+        $post = Post::findOrFail($id);
+        $post->worker_id=$req->worker_id;
+        $post->post_title=$req->post_title;
+        $post->post_content=$req->post_content;
+        $success = $post->save();
 
         return [
             'success' => $success
