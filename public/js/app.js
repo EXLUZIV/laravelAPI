@@ -27,7 +27,8 @@ async function addPost() {
 	const content = document.getElementById('content').value;
 
 	if (postTitle === '' || userId === '' || content === '') {
-        alert('Fill in all the fields');
+
+		alert('Fill in all the fields');
 
 		return;
 	}
@@ -35,7 +36,7 @@ async function addPost() {
 	let formData = new FormData();
 	formData.append('worker_id', userId);
 	formData.append('post_title', postTitle);
-    formData.append('post_content', content);
+   formData.append('post_content', content);
 
 	const res = await fetch('http://php.docker.localhost:8000/api/v1/posts', {
 		method: 'POST',
@@ -54,7 +55,7 @@ async function removePost(id) {
 
 	const res = await fetch(`http://php.docker.localhost:8000/api/v1/posts/${id}`, {
 		method: "DELETE"
-    });
+   });
 
 	const data = await res.json();
 
@@ -70,7 +71,7 @@ async function changePost(sid, userId, title, content) {
 	id = sid;
 	document.getElementById('userIdChange').value = userId;
 	document.getElementById('postTitleChange').value = title;
-    document.getElementById('contentChange').value = content;
+   document.getElementById('contentChange').value = content;
 }
 
 async function updatePost() {
@@ -86,10 +87,10 @@ async function updatePost() {
     };
 
     const res = await fetch(`http://php.docker.localhost:8000/api/v1/posts/${id}`, {
-        headers : {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
+      headers : {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      },
 		method: "PUT",
 		body: JSON.stringify(data)
     })
