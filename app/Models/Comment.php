@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Comment extends Model
 {
@@ -15,12 +16,12 @@ class Comment extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    public function worker()
+    public function worker(): HasOne
     {
         return $this->hasOne(Worker::class);
     }
 
-    public function post()
+    public function post(): HasOne
     {
         return $this->hasOne(Post::class);
     }

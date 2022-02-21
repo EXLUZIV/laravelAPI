@@ -19,7 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+
+        return PostResource::collection(Post::all());
+
     }
 
     /**
@@ -28,25 +30,13 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $req)
+    public function store(PostRequest $request)
     {
-        // request()->validate([
-        //     'worker_id' => 'required',
-        //     'post_title' => 'required',
-        //     'post_content' => 'required',
-        // ]);
-
-
-        // return  Post::create([
-        //     'worker_id' => request('worker_id'),
-        //     'post_title' => request('post_title'),
-        //     'post_content' => request('post_content')
-        // ]);
 
         $post = new Post;
-        $post->worker_id=$req->worker_id;
-        $post->post_title=$req->post_title;
-        $post->post_content=$req->post_content;
+        $post->worker_id=$request->worker_id;
+        $post->post_title=$request->post_title;
+        $post->post_content=$request->post_content;
         $success = $post->save();
 
         return [
@@ -63,7 +53,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+
+        return new PostResource($post);
+
     }
 
     /**
@@ -73,24 +65,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $req, $id)
+    public function update(PostRequest $request, Post $post)
     {
-        // request()->validate([
-        //     'worker_id' => 'required',
-        //     'post_title' => 'required',
-        //     'post_content' => 'required',
-        // ]);
 
-        // $success = $post->update([
-        //     'worker_id' => request('worker_id'),
-        //     'post_title' => request('post_title'),
-        //     'post_content' => request('post_content'),
-        // ]);
-
-        $post = Post::findOrFail($id);
-        $post->worker_id=$req->worker_id;
-        $post->post_title=$req->post_title;
-        $post->post_content=$req->post_content;
+        $post->worker_id=$request->worker_id;
+        $post->post_title=$request->post_title;
+        $post->post_content=$request->post_content;
         $success = $post->save();
 
         return [
@@ -113,6 +93,10 @@ class PostController extends Controller
         return [
             'success' => $success
         ];
+
+        // return response()->json([
+        //     'success' => 'true'
+        // ]);
 
     }
 }
