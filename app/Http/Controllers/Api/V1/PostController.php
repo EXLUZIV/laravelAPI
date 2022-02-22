@@ -33,8 +33,6 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
 
-       return '123';
-
         $post = new Post;
         $post->worker_id=$request->worker_id;
         $post->comment_id=$request->comment_id;
