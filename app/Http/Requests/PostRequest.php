@@ -25,7 +25,8 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'worker_id' => 'required|max:255',
+            'worker_id' => 'required|integer|max:255',
+            'comment_id' => 'required|integer|max:255',
             'post_title' => 'required|max:255',
             'post_content' => 'required|max:255',
             'coment_content' => 'required|max:255',

@@ -18,7 +18,6 @@ class CommentFactory extends Factory
     {
         return [
             'worker_id' => $this->faker->numberBetween(1,10),
-            'post_id' => $this->faker->numberBetween(1,10),
             'comment_title' => $this->faker->text
         ];
     }

@@ -33,15 +33,18 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
 
+       return '123';
+
         $post = new Post;
         $post->worker_id=$request->worker_id;
+        $post->comment_id=$request->comment_id;
         $post->post_title=$request->post_title;
         $post->post_content=$request->post_content;
         $success = $post->save();
 
-        return [
+        return response()->json([
             'success' => $success
-        ];
+        ]);
 
     }
 
@@ -69,13 +72,14 @@ class PostController extends Controller
     {
 
         $post->worker_id=$request->worker_id;
+        $post->comment_id=$request->comment_id;
         $post->post_title=$request->post_title;
         $post->post_content=$request->post_content;
         $success = $post->save();
 
-        return [
+        return response()->json([
             'success' => $success
-        ];
+        ]);
 
     }
 
@@ -90,13 +94,9 @@ class PostController extends Controller
 
         $success = $post->delete();
 
-        return [
+        return response()->json([
             'success' => $success
-        ];
-
-        // return response()->json([
-        //     'success' => 'true'
-        // ]);
+        ]);
 
     }
 }

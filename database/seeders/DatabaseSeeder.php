@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             WorkerSeeder::class,
+            CommentSeeder::class,
             PostSeeder::class,
-            CommentSeeder::class
         ]);
     }
 }

@@ -15,6 +15,7 @@
 
 	<div class="add-box">
 		<input id="userId" type="number" placeholder="user">
+        <input id="commentId" type="number" placeholder="coment">
 		<input id="postTitle" type="text" placeholder="post title">
 		<input id="content" type="text" placeholder="content">
 		<button onclick="addPost()">Add post</button>
@@ -22,6 +23,7 @@
 
 	<div class="change-box">
 		<input id="userIdChange" type="number" placeholder="user">
+        <input id="commentIdChange" type="number" placeholder="coment">
 		<input id="postTitleChange" type="text" placeholder="post title">
 		<input id="contentChange" type="text" placeholder="content">
 		<button onclick="updatePost()">Change post</button>

@@ -13,7 +13,7 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    protected $fillable = ['worker_id', 'post_title', 'post_content'];
+    protected $fillable = ['worker_id', 'comment_id', 'post_title', 'post_content'];
 
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -26,4 +26,5 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
 }
